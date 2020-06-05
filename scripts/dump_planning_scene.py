@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright 2014, Michael Ferguson
+# Copyright 2014-2020, Michael Ferguson
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -57,5 +57,4 @@ if __name__ == "__main__":
     print(scene)
     print("to %s" % filename)
 
-    pickle.dump(scene, open(filename, "w"))
-
+    pickle.dump(scene, open(filename, "wb"))

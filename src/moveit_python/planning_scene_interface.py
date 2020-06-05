@@ -56,7 +56,7 @@ from shape_msgs.msg import MeshTriangle, Mesh, SolidPrimitive, Plane
 class PlanningSceneInterface(object):
     def __init__(self, frame, ns='', init_from_service=True):
         # ns must be a string
-        if not isinstance(ns, basestring):
+        if not isinstance(ns, str):
             rospy.logerr('Namespace must be a string!')
             ns = ''
         elif not ns.endswith('/'):
