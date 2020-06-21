@@ -147,10 +147,14 @@ class PlanningSceneInterface(object):
         mesh = Mesh()
         for face in scene.meshes[0].faces:
             triangle = MeshTriangle()
-            if len(face.indices) == 3:
-                triangle.vertex_indices = [face.indices[0],
-                                           face.indices[1],
-                                           face.indices[2]]
+            if hasattr(face, "indices"):
+                if len(face.indices) == 3:
+                    triangle.vertex_indices = [face.indices[0],
+                                               face.indices[1],
+                                               face.indices[2]]
+            else:
+                triangle.vertex_indices = [face[0], face[1], face[2]]
+
             mesh.triangles.append(triangle)
         for vertex in scene.meshes[0].vertices:
             point = Point()
@@ -462,3 +466,12 @@ class PlanningSceneInterface(object):
         if not resp.success:
             rospy.logerr("Could not update colors through service, using topic instead.")
             self._scene_pub.publish(p)
+
+
+# "test code for add mesh"
+# if __name__ == "__main__":
+#     from geometry_msgs.msg import Pose, Point, Quaternion
+#     rospy.init_node("terminator_moveit_py", anonymous=True)
+#     p = PlanningSceneInterface(frame="base_link")
+#     mesh_name = "/home/vinjohn/sucheng/Robotics/src/ur_perception/models/024_bowl/textured.obj"
+#     p.addMesh(name="bowl", pose=Pose(Point(x=0.1, y=0.1, z=0.1), Quaternion()), filename=mesh_name)

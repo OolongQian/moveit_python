@@ -28,7 +28,6 @@
 import rospy
 import actionlib
 from tf.listener import TransformListener
-from geometry_msgs.msg import *
 from moveit_msgs.msg import MoveGroupAction, MoveGroupGoal
 from moveit_msgs.msg import Constraints, JointConstraint, PositionConstraint, OrientationConstraint, BoundingVolume
 from shape_msgs.msg import SolidPrimitive
